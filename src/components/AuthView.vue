@@ -1,18 +1,16 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-700 to-indigo-900 p-6">
+  <div class="min-h-screen w-screen bg-cover bg-center flex items-center justify-center p-6"
+     style="background-image: url('/img/login.png');">
+
     <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md text-gray-100 space-y-6 shadow-2xl">
-      <h2 class="text-3xl font-bold text-center">Auth Demo</h2>
+      
+      <!-- 🚀 Logo SIPER arriba del título -->
+      <img src="/img/siper-logo.png" alt="SIPER Logo" class="w-100 mx-auto mb-4" />
+      
+      <h2 class="text-3xl font-bold text-center">INICIO DE SESION</h2>
 
       <div v-if="!user">
-        <div class="space-y-4">
-          <button @click="activeForm = 'login'" 
-                  :class="activeForm === 'login' ? 'bg-purple-500' : 'bg-gray-700'"
-                  class="px-4 py-2 rounded-xl w-full">Login</button>
-          <button @click="activeForm = 'register'" 
-                  :class="activeForm === 'register' ? 'bg-purple-500' : 'bg-gray-700'"
-                  class="px-4 py-2 rounded-xl w-full">Registro</button>
-        </div>
-
+        
         <form v-if="activeForm === 'login'" @submit.prevent="login" class="space-y-4 mt-6">
           <input v-model="loginForm.email" type="email" placeholder="Email" class="w-full p-3 rounded-lg bg-gray-800 text-white">
           <input v-model="loginForm.password" type="password" placeholder="Password" class="w-full p-3 rounded-lg bg-gray-800 text-white">
@@ -27,9 +25,11 @@
           <button class="w-full bg-purple-600 hover:bg-purple-700 p-3 rounded-lg">Registrarse</button>
         </form>
       </div>
-      </div>
+    </div>
   </div>
 </template>
+
+
 
 <script setup>
 import { ref } from 'vue'
