@@ -34,6 +34,10 @@
           Dividir
         </button>
       </div>
+
+      <button @click="logout" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl">
+        Cerrar sesión
+      </button>
     </div>
   </div>
 </template>
@@ -42,6 +46,10 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const api = 'http://localhost:8000/api'
 
 const a = ref(null)
 const b = ref(null)
@@ -61,6 +69,37 @@ const checkInputs = () => {
   return true
 }
 
+const logout = async () => {
+  try {
+    await axios.post(`${api}/logout`, {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    localStorage.removeItem('token')
+
+    await Swal.fire({
+      icon: 'info',
+      title: 'Sesión cerrada',
+      text: 'Has cerrado sesión correctamente',
+      confirmButtonColor: '#7c3aed',
+      background: '#1f1f2e',
+      color: '#fff'
+    })
+
+    router.push('/auth') // 👈 regresa al login
+  } catch (err) {
+    await Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No se pudo cerrar sesión',
+      confirmButtonColor: '#7c3aed',
+      background: '#1f1f2e',
+      color: '#fff'
+    })
+  }
+}
+
 const mostrarResultado = (valor) => {
   Swal.fire({
     icon: 'success',
@@ -76,7 +115,7 @@ const mostrarResultado = (valor) => {
 
 const sumar = () => {
   if (!checkInputs()) return
-  axios.post('http://localhost:8000/api/sumar', { a: a.value, b: b.value })
+  axios.post(`${api}/sumar`, { a: a.value, b: b.value })
     .then(res => mostrarResultado(res.data.resultado))
     .catch(() => mostrarResultado('Error al sumar'))
 }

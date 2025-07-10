@@ -1,13 +1,11 @@
-<script setup>
-import Calculadora from './components/Calculadora.vue'
-</script>
-
 <template>
-  <div>
-    <Calculadora />
-  </div>
+  <router-view />
 </template>
 
+<script setup>
+// no necesitas importar nada aquí
+</script>
+
 <style scoped>
-/* Puedes poner estilos globales si quieres */
+/* estilos globales si quieres */
 </style>
