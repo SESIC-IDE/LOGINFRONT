@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen flex items-center justify-center p-4 font-sans"
-       style="background: linear-gradient(135deg, #e6eff7, #f8fafc);">
+     style="background: linear-gradient(135deg, #e0ecf8, #d0e2f5, #f8fafc);">
+
 
     <!-- 🚀 Vista móvil -->
     <div v-if="isMobile" class="bg-white border border-gray-200 rounded-xl p-6 w-full max-w-sm text-center text-blue-900 shadow-sm">
@@ -88,14 +89,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useRouter } from 'vue-router'
 import { useDevice } from '@/composables/useDevice'
 
 const { isMobile } = useDevice()
 const router = useRouter()
-const api = 'http://localhost:8000/api'
 
 const a = ref(null)
 const b = ref(null)
@@ -115,11 +114,39 @@ const checkInputs = () => {
   return true
 }
 
+const mostrarResultado = (valor) => {
+  Swal.fire({
+    icon: 'success',
+    title: 'Resultado',
+    html: `<div style="font-size:2rem; color:#003366;">${valor}</div>`,
+    confirmButtonColor: '#003366',
+    background: '#f9fafb',
+    color: '#003366'
+  })
+}
+
+const sumar = () => {
+  if (!checkInputs()) return
+  mostrarResultado(a.value + b.value)
+}
+
+const restar = () => {
+  if (!checkInputs()) return
+  mostrarResultado(a.value - b.value)
+}
+
+const multiplicar = () => {
+  if (!checkInputs()) return
+  mostrarResultado(a.value * b.value)
+}
+
+const dividir = () => {
+  if (!checkInputs()) return
+  mostrarResultado(b.value !== 0 ? (a.value / b.value) : 'No se puede dividir por cero')
+}
+
 const logout = async () => {
   try {
-    await axios.post(`${api}/logout`, {}, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
     localStorage.removeItem('token')
     await Swal.fire({
       icon: 'info',
@@ -140,38 +167,5 @@ const logout = async () => {
       color: '#003366'
     })
   }
-}
-
-const mostrarResultado = (valor) => {
-  Swal.fire({
-    icon: 'success',
-    title: 'Resultado',
-    html: `<div style="font-size:2rem; color:#003366;">${valor}</div>`,
-    confirmButtonColor: '#003366',
-    background: '#f9fafb',
-    color: '#003366'
-  })
-}
-
-const sumar = () => {
-  if (!checkInputs()) return
-  axios.post(`${api}/sumar`, { a: a.value, b: b.value })
-    .then(res => mostrarResultado(res.data.resultado))
-    .catch(() => mostrarResultado('Error al sumar'))
-}
-
-const restar = () => {
-  if (!checkInputs()) return
-  mostrarResultado(a.value - b.value)
-}
-
-const multiplicar = () => {
-  if (!checkInputs()) return
-  mostrarResultado(a.value * b.value)
-}
-
-const dividir = () => {
-  if (!checkInputs()) return
-  mostrarResultado(b.value !== 0 ? (a.value / b.value) : 'No se puede dividir por cero')
 }
 </script>
