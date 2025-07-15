@@ -1,43 +1,87 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] p-4 font-sans">
-    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8 w-full max-w-md text-center text-gray-100">
-      <h2 class="text-3xl font-bold mb-6 tracking-wider text-purple-400 drop-shadow-lg">
-        CALCULADORA MASTER
+  <div class="min-h-screen flex items-center justify-center p-4 font-sans"
+       style="background: linear-gradient(135deg, #e6eff7, #f8fafc);">
+
+    <!-- 🚀 Vista móvil -->
+    <div v-if="isMobile" class="bg-white border border-gray-200 rounded-xl p-6 w-full max-w-sm text-center text-blue-900 shadow-sm">
+      <h2 class="text-2xl font-bold mb-4 tracking-wide text-blue-800">
+        CALCULADORA MÓVIL
       </h2>
 
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <div class="space-y-4 mb-6">
         <input 
-          type="number"
-          v-model.number="a"
-          placeholder="Número A"
-          class="bg-white/20 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 w-32 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+          type="number" v-model.number="a" placeholder="Número A"
+          class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition"
         />
         <input 
-          type="number"
-          v-model.number="b"
-          placeholder="Número B"
-          class="bg-white/20 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 w-32 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+          type="number" v-model.number="b" placeholder="Número B"
+          class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition"
         />
       </div>
 
-      <div class="flex flex-wrap justify-center gap-4 mb-6">
-        <button @click="sumar" class="px-5 py-3 rounded-xl font-bold bg-purple-600 shadow-lg hover:shadow-purple-700/80 hover:scale-105 transition">
+      <div class="flex flex-col space-y-3 mb-4">
+        <button @click="sumar" class="bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded font-semibold text-white transition">
           Sumar (API)
         </button>
-        <button @click="restar" class="px-5 py-3 rounded-xl font-bold bg-cyan-600 shadow-lg hover:shadow-cyan-700/80 hover:scale-105 transition">
+        <button @click="restar" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded font-semibold text-white transition">
           Restar
         </button>
-        <button @click="multiplicar" class="px-5 py-3 rounded-xl font-bold bg-green-600 shadow-lg hover:shadow-green-700/80 hover:scale-105 transition">
+        <button @click="multiplicar" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded font-semibold text-white transition">
           Multiplicar
         </button>
-        <button @click="dividir" class="px-5 py-3 rounded-xl font-bold bg-pink-600 shadow-lg hover:shadow-pink-700/80 hover:scale-105 transition">
+        <button @click="dividir" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded font-semibold text-white transition">
           Dividir
         </button>
       </div>
 
-      <button @click="logout" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl">
+      <button @click="logout" class="bg-yellow-400 hover:bg-yellow-500 px-6 py-2 rounded-lg text-blue-900 font-semibold transition">
         Cerrar sesión
       </button>
+    </div>
+
+    <!-- 🚀 Vista PC / escritorio -->
+    <div v-else class="bg-white border border-gray-200 rounded-2xl p-12 w-full max-w-3xl text-blue-900 space-y-8 shadow-sm">
+      <h2 class="text-4xl font-extrabold tracking-wide text-blue-800 text-center">
+        CALCULADORA PRO
+      </h2>
+
+      <div class="grid grid-cols-2 gap-8">
+        <div class="relative">
+          <input 
+            type="number" v-model.number="a" placeholder="Número A"
+            class="w-full bg-gray-50 border border-gray-300 rounded-lg px-6 py-4 pl-14 text-blue-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition"
+          />
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700 text-xl font-semibold">A</span>
+        </div>
+        <div class="relative">
+          <input 
+            type="number" v-model.number="b" placeholder="Número B"
+            class="w-full bg-gray-50 border border-gray-300 rounded-lg px-6 py-4 pl-14 text-blue-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition"
+          />
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700 text-xl font-semibold">B</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-4 gap-6 mt-8">
+        <button @click="sumar" class="bg-blue-900 hover:bg-blue-700 px-6 py-4 rounded-lg font-semibold text-white transition">
+          Sumar
+        </button>
+        <button @click="restar" class="bg-blue-700 hover:bg-blue-800 px-6 py-4 rounded-lg font-semibold text-white transition">
+          Restar
+        </button>
+        <button @click="multiplicar" class="bg-blue-700 hover:bg-blue-800 px-6 py-4 rounded-lg font-semibold text-white transition">
+          Multiplicar
+        </button>
+        <button @click="dividir" class="bg-blue-700 hover:bg-blue-800 px-6 py-4 rounded-lg font-semibold text-white transition">
+          Dividir
+        </button>
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <button @click="logout" class="bg-yellow-400 hover:bg-yellow-500 px-8 py-3 rounded-lg text-blue-900 font-semibold transition">
+          Cerrar sesión
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +91,9 @@ import { ref } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useRouter } from 'vue-router'
+import { useDevice } from '@/composables/useDevice'
 
+const { isMobile } = useDevice()
 const router = useRouter()
 const api = 'http://localhost:8000/api'
 
@@ -60,9 +106,9 @@ const checkInputs = () => {
       icon: 'warning',
       title: 'Campos vacíos',
       text: 'Por favor ingresa ambos números antes de continuar.',
-      confirmButtonColor: '#7c3aed',
-      background: '#1f1f2e',
-      color: '#fff'
+      confirmButtonColor: '#003366',
+      background: '#f9fafb',
+      color: '#003366'
     })
     return false
   }
@@ -72,30 +118,26 @@ const checkInputs = () => {
 const logout = async () => {
   try {
     await axios.post(`${api}/logout`, {}, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
     localStorage.removeItem('token')
-
     await Swal.fire({
       icon: 'info',
       title: 'Sesión cerrada',
       text: 'Has cerrado sesión correctamente',
-      confirmButtonColor: '#7c3aed',
-      background: '#1f1f2e',
-      color: '#fff'
+      confirmButtonColor: '#003366',
+      background: '#f9fafb',
+      color: '#003366'
     })
-
-    router.push('/auth') // 👈 regresa al login
+    router.push('/auth')
   } catch (err) {
     await Swal.fire({
       icon: 'error',
       title: 'Error',
       text: 'No se pudo cerrar sesión',
-      confirmButtonColor: '#7c3aed',
-      background: '#1f1f2e',
-      color: '#fff'
+      confirmButtonColor: '#003366',
+      background: '#f9fafb',
+      color: '#003366'
     })
   }
 }
@@ -104,12 +146,10 @@ const mostrarResultado = (valor) => {
   Swal.fire({
     icon: 'success',
     title: 'Resultado',
-    html: `<div style="font-size:2rem; color:#7c3aed; text-shadow:0 0 8px #7c3aed;">
-             ${valor}
-           </div>`,
-    confirmButtonColor: '#7c3aed',
-    background: '#1f1f2e',
-    color: '#fff'
+    html: `<div style="font-size:2rem; color:#003366;">${valor}</div>`,
+    confirmButtonColor: '#003366',
+    background: '#f9fafb',
+    color: '#003366'
   })
 }
 
