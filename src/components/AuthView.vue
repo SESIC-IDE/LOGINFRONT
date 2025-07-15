@@ -12,7 +12,12 @@
       <div v-if="!user">
         
         <form v-if="activeForm === 'login'" @submit.prevent="login" class="space-y-4 mt-6">
-          <input v-model="loginForm.email" type="email" placeholder="Email" class="w-full p-3 rounded-lg bg-gray-800 text-white">
+          <input v-model="loginForm.email" type="email" placeholder="Email"
+                 list="emails"
+                 class="w-full p-3 rounded-lg bg-gray-800 text-white">
+          <datalist id="emails">
+            <option v-for="email in previousEmails" :key="email" :value="email"></option>
+          </datalist>
           <input v-model="loginForm.password" type="password" placeholder="Password" class="w-full p-3 rounded-lg bg-gray-800 text-white">
           <button class="w-full bg-purple-600 hover:bg-purple-700 p-3 rounded-lg">Iniciar Sesión</button>
         </form>
@@ -28,6 +33,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
@@ -53,6 +59,14 @@ const registerForm = ref({
   password_confirmation: ''
 })
 
+// 🔥 NUEVO: emails anteriores
+const previousEmails = ref([])
+
+// Cargar emails guardados al iniciar
+if (localStorage.getItem('previousEmails')) {
+  previousEmails.value = JSON.parse(localStorage.getItem('previousEmails'))
+}
+
 const login = async () => {
   try {
     const response = await axios.post(`${api}/login`, loginForm.value)
@@ -60,7 +74,12 @@ const login = async () => {
     localStorage.setItem('token', response.data.token)
     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
 
-    // 🚀 Mostrar alerta SweetAlert2
+    // ✅ Guardar email en lista si no existe
+    if (!previousEmails.value.includes(loginForm.value.email)) {
+      previousEmails.value.push(loginForm.value.email)
+      localStorage.setItem('previousEmails', JSON.stringify(previousEmails.value))
+    }
+
     await Swal.fire({
       icon: 'success',
       title: 'Bienvenido',
