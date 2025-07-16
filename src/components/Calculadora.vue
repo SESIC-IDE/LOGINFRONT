@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex items-center justify-center p-4 font-sans bg-gradient-to-br from-[#000428] via-[#004e92] to-[#000428]">
 
-    <!-- Vista Móvil -->
+        <!-- Vista Móvil -->
     <div
       v-if="isMobile"
       class="mobile-glow border border-blue-400/30 bg-white/10 backdrop-blur-md text-white p-6 w-full max-w-sm rounded-2xl shadow-2xl space-y-6 transition duration-300 ease-in-out hover:shadow-blue-400/40"
@@ -61,8 +61,67 @@
           Cerrar sesión
         </button>
       </div>
-    </div>
+      <!-- Barras de colores personalizados -->
+       <div class="w-full text-center my-12">
+  <h2 class="text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#11b873] via-[#2b97ff] to-[#ff3131] drop-shadow-xl">
+    PALETA DE COLORES INSTITUCIONALES
+  </h2>
+</div>
+
+<div class="w-full max-w-5xl space-y-8 mb-16">
+  <!-- Verdes -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Verdes</div>
+    <div class="color-bar bg-[#11b873]" title="#11b873 (600)"></div>
+    <div class="color-bar bg-[#11b873] opacity-80" title="#11b873 (500)"></div>
   </div>
+
+  <!-- Amarillos -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Amarillos</div>
+    <div class="color-bar bg-[#c6a708]" title="#c6a708 (600)"></div>
+    <div class="color-bar bg-[#e5d40d]" title="#e5d40d (500)"></div>
+  </div>
+
+  <!-- Azules -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Azules</div>
+    <div class="color-bar bg-[#1478fc]" title="#1478fc (600)"></div>
+    <div class="color-bar bg-[#2b97ff]" title="#2b97ff (500)"></div>
+    <div class="color-bar bg-[#2cbdff]" title="#2cbdff (400)"></div>
+  </div>
+
+  <!-- Rojos -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Rojos</div>
+    <div class="color-bar bg-[#f01212]" title="#f01212 (600)"></div>
+    <div class="color-bar bg-[#ff3131]" title="#ff3131 (500)"></div>
+  </div>
+
+  <!-- Grises -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Grises</div>
+    <div class="color-bar bg-[#888888]" title="#888888 (400)"></div>
+    <div class="color-bar bg-[#b0b0b0]" title="#b0b0b0 (300)"></div>
+  </div>
+
+  <!-- Negro -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Negro</div>
+    <div class="color-bar bg-[#000000]" title="#000000 (950)"></div>
+  </div>
+
+  <!-- Blanco -->
+  <div class="space-y-2 group">
+    <div class="text-white font-semibold text-lg">Blanco</div>
+    <div class="color-bar bg-[#ffffff] border border-gray-300" title="#ffffff (50)"></div>
+  </div>
+</div>
+
+    </div>
+    
+  </div>
+  
 </template>
 
 <script setup>
@@ -146,6 +205,16 @@ const logout = async () => {
 </script>
 
 <style scoped>
+.color-bar {
+  height: 3rem;
+  border-radius: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.color-bar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 10px currentColor;
+}
 .btn-glow {
   background: linear-gradient(to bottom, #0ff, #0cc);
   color: #002b36;
