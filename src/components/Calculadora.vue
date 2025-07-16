@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center p-4 font-sans bg-gradient-to-br from-[#000428] via-[#004e92] to-[#000428]">
+  <div class="min-h-screen flex items-center justify-center p-4 font-sans bg-gradient-to-br from-[#000000] via-[#2b97ff] to-[#000000]">
 
-        <!-- Vista Móvil -->
+    <!-- Vista Móvil -->
     <div
       v-if="isMobile"
-      class="mobile-glow border border-blue-400/30 bg-white/10 backdrop-blur-md text-white p-6 w-full max-w-sm rounded-2xl shadow-2xl space-y-6 transition duration-300 ease-in-out hover:shadow-blue-400/40"
+      class="mobile-glow border border-[#2b97ff] bg-white/10 backdrop-blur-md text-white p-6 w-full max-w-sm rounded-2xl shadow-2xl space-y-6 transition duration-300 ease-in-out hover:shadow-[#2b97ff]/40"
     >
-      <h2 class="text-2xl font-bold tracking-wide text-center text-blue-100">CALCULADORA MÓVIL</h2>
+      <h2 class="text-2xl font-bold tracking-wide text-center text-[#2cbdff]">CALCULADORA MÓVIL</h2>
 
       <input type="number" v-model.number="a" placeholder="Número A"
-        class="w-full bg-blue-100/10 border border-blue-300 text-white placeholder-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        class="w-full bg-[#1478fc]/10 border border-[#2cbdff] text-white placeholder-[#2cbdff] rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2cbdff]" />
       <input type="number" v-model.number="b" placeholder="Número B"
-        class="w-full bg-blue-100/10 border border-blue-300 text-white placeholder-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        class="w-full bg-[#1478fc]/10 border border-[#2cbdff] text-white placeholder-[#2cbdff] rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2cbdff]" />
 
       <div class="grid grid-cols-2 gap-3">
         <button @click="sumar" class="btn-glow">+</button>
@@ -26,38 +26,38 @@
         <button @click="tangente" class="btn-glow">tan</button>
       </div>
 
-      <button @click="logout" class="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-2 rounded transition">Cerrar sesión</button>
+      <button @click="logout" class="w-full mt-4 bg-[#e5d40d] hover:bg-[#c6a708] text-black font-bold py-2 rounded transition">Cerrar sesión</button>
     </div>
 
     <!-- Vista PC -->
     <div
       v-else
-      class="desktop-glow border border-cyan-400/20 bg-white/10 backdrop-blur-lg text-white p-12 w-full max-w-4xl rounded-3xl shadow-xl space-y-10 transition duration-300 ease-in-out hover:shadow-cyan-400/50"
+      class="desktop-glow border border-[#2b97ff] bg-white/10 backdrop-blur-lg text-white p-12 w-full max-w-4xl rounded-3xl shadow-xl space-y-10 transition duration-300 ease-in-out hover:shadow-[#2b97ff]/50"
     >
-      <h2 class="text-4xl font-extrabold tracking-wide text-center text-cyan-100">CALCULADORA PRO</h2>
+      <h2 class="text-4xl font-extrabold tracking-wide text-center text-[#2cbdff]">CALCULADORA PRO</h2>
 
       <div class="grid grid-cols-2 gap-6">
         <input type="number" v-model.number="a" placeholder="Número A"
-          class="w-full bg-blue-100/10 border border-cyan-300 text-white placeholder-cyan-200 rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+          class="w-full bg-[#1478fc]/10 border border-[#2cbdff] text-white placeholder-[#2cbdff] rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2cbdff]" />
         <input type="number" v-model.number="b" placeholder="Número B"
-          class="w-full bg-blue-100/10 border border-cyan-300 text-white placeholder-cyan-200 rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+          class="w-full bg-[#1478fc]/10 border border-[#2cbdff] text-white placeholder-[#2cbdff] rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#2cbdff]" />
       </div>
 
       <div class="grid grid-cols-5 gap-4">
-        <button @click="sumar" class="btn-glow">+</button>
-        <button @click="restar" class="btn-glow">−</button>
-        <button @click="multiplicar" class="btn-glow">×</button>
-        <button @click="dividir" class="btn-glow">÷</button>
-        <button @click="potencia" class="btn-glow">^</button>
-        <button @click="raiz" class="btn-glow">√</button>
-        <button @click="logaritmo" class="btn-glow">log</button>
-        <button @click="seno" class="btn-glow">sin</button>
-        <button @click="coseno" class="btn-glow">cos</button>
-        <button @click="tangente" class="btn-glow">tan</button>
-      </div>
+  <button @click="sumar" class="btn-institucional bg-[#11b873] hover:bg-[#0ea765]">+</button>
+  <button @click="restar" class="btn-institucional bg-[#2b97ff] hover:bg-[#1478fc]">−</button>
+  <button @click="multiplicar" class="btn-institucional bg-[#e5d40d] hover:bg-[#c6a708]">×</button>
+  <button @click="dividir" class="btn-institucional bg-[#f01212] hover:bg-[#ff3131]">÷</button>
+  <button @click="potencia" class="btn-institucional bg-[#2cbdff] hover:bg-[#2b97ff]">^</button>
+  <button @click="raiz" class="btn-institucional bg-[#b0b0b0] hover:bg-[#888888]">√</button>
+  <button @click="logaritmo" class="btn-institucional bg-[#c6a708] hover:bg-[#e5d40d]">log</button>
+  <button @click="seno" class="btn-institucional bg-[#1478fc] hover:bg-[#2b97ff]">sin</button>
+  <button @click="coseno" class="btn-institucional bg-[#11b873] hover:bg-[#0ea765]">cos</button>
+  <button @click="tangente" class="btn-institucional bg-[#ff3131] hover:bg-[#f01212]">tan</button>
+</div>
 
       <div class="flex justify-center">
-        <button @click="logout" class="bg-yellow-400 hover:bg-yellow-500 px-8 py-3 rounded-lg text-blue-900 font-semibold transition">
+        <button @click="logout" class="bg-[#e5d40d] hover:bg-[#c6a708] px-8 py-3 rounded-lg text-black font-semibold transition">
           Cerrar sesión
         </button>
       </div>
@@ -205,6 +205,20 @@ const logout = async () => {
 </script>
 
 <style scoped>
+.btn-institucional {
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.btn-institucional:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
 .color-bar {
   height: 3rem;
   border-radius: 0.5rem;
