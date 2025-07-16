@@ -61,60 +61,76 @@
           Cerrar sesión
         </button>
       </div>
-      <!-- Barras de colores personalizados -->
-       <div class="w-full text-center my-12">
+      <!-- Paleta de Colores Institucionales -->
+<div class="w-full text-center my-12">
   <h2 class="text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#11b873] via-[#2b97ff] to-[#ff3131] drop-shadow-xl">
     PALETA DE COLORES INSTITUCIONALES
   </h2>
 </div>
 
 <div class="w-full max-w-5xl space-y-8 mb-16">
-  <!-- Verdes -->
-  <div class="space-y-2 group">
+  <!-- Grupo de colores (ejemplo para cada grupo) -->
+  <div class="space-y-4">
+    <!-- Verdes -->
     <div class="text-white font-semibold text-lg">Verdes</div>
-    <div class="color-bar bg-[#11b873]" title="#11b873 (600)"></div>
-    <div class="color-bar bg-[#11b873] opacity-80" title="#11b873 (500)"></div>
-  </div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#11b873]" title="#11b873"></div>
+      <div class="code-display">#11b873</div>
+      <div class="color-bar bg-[#11b873] opacity-80" title="#11b873 (500)"></div>
+      <div class="code-display">#11b873</div>
+    </div>
 
-  <!-- Amarillos -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Amarillos</div>
-    <div class="color-bar bg-[#c6a708]" title="#c6a708 (600)"></div>
-    <div class="color-bar bg-[#e5d40d]" title="#e5d40d (500)"></div>
-  </div>
+    <!-- Amarillos -->
+    <div class="text-white font-semibold text-lg mt-4">Amarillos</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#c6a708]" title="#c6a708"></div>
+      <div class="code-display">#c6a708</div>
+      <div class="color-bar bg-[#e5d40d]" title="#e5d40d"></div>
+      <div class="code-display">#e5d40d</div>
+    </div>
 
-  <!-- Azules -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Azules</div>
-    <div class="color-bar bg-[#1478fc]" title="#1478fc (600)"></div>
-    <div class="color-bar bg-[#2b97ff]" title="#2b97ff (500)"></div>
-    <div class="color-bar bg-[#2cbdff]" title="#2cbdff (400)"></div>
-  </div>
+    <!-- Azules -->
+    <div class="text-white font-semibold text-lg mt-4">Azules</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#1478fc]" title="#1478fc"></div>
+      <div class="code-display">#1478fc</div>
+      <div class="color-bar bg-[#2b97ff]" title="#2b97ff"></div>
+      <div class="code-display">#2b97ff</div>
+      <div class="color-bar bg-[#2cbdff]" title="#2cbdff"></div>
+      <div class="code-display">#2cbdff</div>
+    </div>
 
-  <!-- Rojos -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Rojos</div>
-    <div class="color-bar bg-[#f01212]" title="#f01212 (600)"></div>
-    <div class="color-bar bg-[#ff3131]" title="#ff3131 (500)"></div>
-  </div>
+    <!-- Rojos -->
+    <div class="text-white font-semibold text-lg mt-4">Rojos</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#f01212]" title="#f01212"></div>
+      <div class="code-display">#f01212</div>
+      <div class="color-bar bg-[#ff3131]" title="#ff3131"></div>
+      <div class="code-display">#ff3131</div>
+    </div>
 
-  <!-- Grises -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Grises</div>
-    <div class="color-bar bg-[#888888]" title="#888888 (400)"></div>
-    <div class="color-bar bg-[#b0b0b0]" title="#b0b0b0 (300)"></div>
-  </div>
+    <!-- Grises -->
+    <div class="text-white font-semibold text-lg mt-4">Grises</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#888888]" title="#888888"></div>
+      <div class="code-display">#888888</div>
+      <div class="color-bar bg-[#b0b0b0]" title="#b0b0b0"></div>
+      <div class="code-display">#b0b0b0</div>
+    </div>
 
-  <!-- Negro -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Negro</div>
-    <div class="color-bar bg-[#000000]" title="#000000 (950)"></div>
-  </div>
+    <!-- Negro -->
+    <div class="text-white font-semibold text-lg mt-4">Negro</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#000000]" title="#000000"></div>
+      <div class="code-display">#000000</div>
+    </div>
 
-  <!-- Blanco -->
-  <div class="space-y-2 group">
-    <div class="text-white font-semibold text-lg">Blanco</div>
-    <div class="color-bar bg-[#ffffff] border border-gray-300" title="#ffffff (50)"></div>
+    <!-- Blanco -->
+    <div class="text-white font-semibold text-lg mt-4">Blanco</div>
+    <div class="space-y-2">
+      <div class="color-bar bg-[#ffffff] border border-gray-300" title="#ffffff"></div>
+      <div class="code-display">#ffffff</div>
+    </div>
   </div>
 </div>
 
