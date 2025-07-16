@@ -1,69 +1,62 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center p-4 font-sans"
-    style="background: linear-gradient(135deg, #003366, #1976d2, #e6eff7);">
+  <div class="min-h-screen flex items-center justify-center p-4 font-sans bg-gradient-to-br from-[#000428] via-[#004e92] to-[#000428]">
 
-    <!-- 🚀 Vista móvil -->
-    <div v-if="isMobile" class="bg-white/90 border border-gray-200 rounded-xl p-6 w-full max-w-sm text-center text-blue-900 shadow-lg">
-      <h2 class="text-2xl font-bold mb-4 tracking-wide text-blue-800">
-        CALCULADORA MÓVIL
-      </h2>
+    <!-- Vista Móvil -->
+    <div
+      v-if="isMobile"
+      class="mobile-glow border border-blue-400/30 bg-white/10 backdrop-blur-md text-white p-6 w-full max-w-sm rounded-2xl shadow-2xl space-y-6 transition duration-300 ease-in-out hover:shadow-blue-400/40"
+    >
+      <h2 class="text-2xl font-bold tracking-wide text-center text-blue-100">CALCULADORA MÓVIL</h2>
 
-      <div class="space-y-4 mb-6">
-        <input type="number" v-model.number="a" placeholder="Número A"
-          class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-700 transition"/>
-        <input type="number" v-model.number="b" placeholder="Número B"
-          class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-700 transition"/>
+      <input type="number" v-model.number="a" placeholder="Número A"
+        class="w-full bg-blue-100/10 border border-blue-300 text-white placeholder-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+      <input type="number" v-model.number="b" placeholder="Número B"
+        class="w-full bg-blue-100/10 border border-blue-300 text-white placeholder-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+
+      <div class="grid grid-cols-2 gap-3">
+        <button @click="sumar" class="btn-glow">+</button>
+        <button @click="restar" class="btn-glow">−</button>
+        <button @click="multiplicar" class="btn-glow">×</button>
+        <button @click="dividir" class="btn-glow">÷</button>
+        <button @click="potencia" class="btn-glow">^</button>
+        <button @click="raiz" class="btn-glow">√</button>
+        <button @click="logaritmo" class="btn-glow">log</button>
+        <button @click="seno" class="btn-glow">sin</button>
+        <button @click="coseno" class="btn-glow">cos</button>
+        <button @click="tangente" class="btn-glow">tan</button>
       </div>
 
-      <div class="flex flex-col space-y-3 mb-4">
-        <button @click="sumar" class="bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold transition">Sumar</button>
-        <button @click="restar" class="bg-blue-800 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold transition">Restar</button>
-        <button @click="multiplicar" class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold transition">Multiplicar</button>
-        <button @click="dividir" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white font-semibold transition">Dividir</button>
-        <button @click="potencia" class="bg-green-700 hover:bg-green-600 px-4 py-2 rounded text-white font-semibold transition">Potencia (API)</button>
-        <button @click="raiz" class="bg-green-600 hover:bg-green-500 px-4 py-2 rounded text-white font-semibold transition">Raíz (API)</button>
-        <button @click="logaritmo" class="bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded text-white font-semibold transition">Log (API)</button>
-        <button @click="seno" class="bg-pink-700 hover:bg-pink-600 px-4 py-2 rounded text-white font-semibold transition">Seno (API)</button>
-        <button @click="coseno" class="bg-pink-600 hover:bg-pink-500 px-4 py-2 rounded text-white font-semibold transition">Coseno (API)</button>
-        <button @click="tangente" class="bg-pink-500 hover:bg-pink-400 px-4 py-2 rounded text-white font-semibold transition">Tangente (API)</button>
-      </div>
-
-      <button @click="logout" class="bg-yellow-400 hover:bg-yellow-500 px-6 py-2 rounded-lg text-blue-900 font-semibold transition">
-        Cerrar sesión
-      </button>
+      <button @click="logout" class="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-2 rounded transition">Cerrar sesión</button>
     </div>
 
-    <!-- 🚀 Vista PC -->
-    <div v-else class="bg-white/90 border border-gray-200 rounded-2xl p-12 w-full max-w-3xl text-blue-900 space-y-8 shadow-lg">
-      <h2 class="text-4xl font-extrabold tracking-wide text-blue-800 text-center">CALCULADORA PRO</h2>
+    <!-- Vista PC -->
+    <div
+      v-else
+      class="desktop-glow border border-cyan-400/20 bg-white/10 backdrop-blur-lg text-white p-12 w-full max-w-4xl rounded-3xl shadow-xl space-y-10 transition duration-300 ease-in-out hover:shadow-cyan-400/50"
+    >
+      <h2 class="text-4xl font-extrabold tracking-wide text-center text-cyan-100">CALCULADORA PRO</h2>
 
-      <div class="grid grid-cols-2 gap-8">
-        <div class="relative">
-          <input type="number" v-model.number="a" placeholder="Número A"
-            class="w-full bg-gray-50 border border-gray-300 rounded-lg px-6 py-4 pl-14 text-blue-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-700 transition"/>
-          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700 text-xl font-semibold">A</span>
-        </div>
-        <div class="relative">
-          <input type="number" v-model.number="b" placeholder="Número B"
-            class="w-full bg-gray-50 border border-gray-300 rounded-lg px-6 py-4 pl-14 text-blue-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-700 transition"/>
-          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700 text-xl font-semibold">B</span>
-        </div>
+      <div class="grid grid-cols-2 gap-6">
+        <input type="number" v-model.number="a" placeholder="Número A"
+          class="w-full bg-blue-100/10 border border-cyan-300 text-white placeholder-cyan-200 rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        <input type="number" v-model.number="b" placeholder="Número B"
+          class="w-full bg-blue-100/10 border border-cyan-300 text-white placeholder-cyan-200 rounded px-6 py-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
       </div>
 
-      <div class="grid grid-cols-5 gap-4 mt-8">
-        <button @click="sumar" class="bg-blue-900 hover:bg-blue-700 px-6 py-4 rounded-lg text-white font-semibold transition">Sumar</button>
-        <button @click="restar" class="bg-blue-800 hover:bg-blue-600 px-6 py-4 rounded-lg text-white font-semibold transition">Restar</button>
-        <button @click="multiplicar" class="bg-blue-700 hover:bg-blue-600 px-6 py-4 rounded-lg text-white font-semibold transition">Multiplicar</button>
-        <button @click="dividir" class="bg-blue-600 hover:bg-blue-500 px-6 py-4 rounded-lg text-white font-semibold transition">Dividir</button>
-        <button @click="potencia" class="bg-green-700 hover:bg-green-600 px-6 py-4 rounded-lg text-white font-semibold transition">Potencia (API)</button>
-        <button @click="raiz" class="bg-green-600 hover:bg-green-500 px-6 py-4 rounded-lg text-white font-semibold transition">Raíz (API)</button>
-        <button @click="logaritmo" class="bg-purple-700 hover:bg-purple-600 px-6 py-4 rounded-lg text-white font-semibold transition">Log (API)</button>
-        <button @click="seno" class="bg-pink-700 hover:bg-pink-600 px-6 py-4 rounded-lg text-white font-semibold transition">Seno (API)</button>
-        <button @click="coseno" class="bg-pink-600 hover:bg-pink-500 px-6 py-4 rounded-lg text-white font-semibold transition">Coseno (API)</button>
-        <button @click="tangente" class="bg-pink-500 hover:bg-pink-400 px-6 py-4 rounded-lg text-white font-semibold transition">Tangente (API)</button>
+      <div class="grid grid-cols-5 gap-4">
+        <button @click="sumar" class="btn-glow">+</button>
+        <button @click="restar" class="btn-glow">−</button>
+        <button @click="multiplicar" class="btn-glow">×</button>
+        <button @click="dividir" class="btn-glow">÷</button>
+        <button @click="potencia" class="btn-glow">^</button>
+        <button @click="raiz" class="btn-glow">√</button>
+        <button @click="logaritmo" class="btn-glow">log</button>
+        <button @click="seno" class="btn-glow">sin</button>
+        <button @click="coseno" class="btn-glow">cos</button>
+        <button @click="tangente" class="btn-glow">tan</button>
       </div>
 
-      <div class="flex justify-center mt-6">
+      <div class="flex justify-center">
         <button @click="logout" class="bg-yellow-400 hover:bg-yellow-500 px-8 py-3 rounded-lg text-blue-900 font-semibold transition">
           Cerrar sesión
         </button>
@@ -79,108 +72,107 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useDevice } from '@/composables/useDevice'
 
-const { isMobile } = useDevice()
 const router = useRouter()
-const api = 'http://localhost:8000/api'
-
+const { isMobile } = useDevice()
 const a = ref(null)
 const b = ref(null)
 
-const formatNumber = (num) => {
-  const rounded = parseFloat(num.toFixed(4))
-  return rounded % 1 === 0 ? parseInt(rounded) : rounded
+const mostrarResultado = (valor) => {
+  const limpio = Number.isInteger(valor) ? valor : parseFloat(valor.toFixed(4))
+  Swal.fire({
+    icon: 'success',
+    title: 'Resultado',
+    html: `<div style="font-size:2rem; color:#00ffff;">${limpio}</div>`,
+    background: '#0f172a',
+    color: '#00ffff',
+    confirmButtonColor: '#00bcd4'
+  })
 }
 
-const showAlert = (msg) => Swal.fire({
-  icon: 'warning', title: 'Atención', text: msg,
-  confirmButtonColor: '#003366', background: '#f9fafb', color: '#003366'
-})
-
-const showResult = (msg) => Swal.fire({
-  icon: 'success', title: 'Resultado',
-  html: `<div style="font-size:2rem; color:#003366;">${msg}</div>`,
-  confirmButtonColor: '#003366', background: '#f9fafb', color: '#003366'
-})
-
-const checkAB = () => {
-  if (a.value === null || b.value === null || isNaN(a.value) || isNaN(b.value)) {
-    showAlert('Por favor ingresa ambos números.')
+const checkInputs = () => {
+  if (a.value === null || b.value === null) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Faltan datos',
+      text: 'Debes ingresar ambos números.',
+      confirmButtonColor: '#00bcd4',
+      background: '#0f172a',
+      color: '#00ffff'
+    })
     return false
   }
   return true
 }
 
-const sumar = () => {
-  if (!checkAB()) return
-  showResult(formatNumber(parseFloat(a.value) + parseFloat(b.value)))
+const apiCall = async (url, payload) => {
+  try {
+    const response = await axios.post(`http://localhost:8000/api/${url}`, payload)
+    mostrarResultado(response.data.resultado)
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: err.response?.data?.message || 'Ocurrió un error',
+      background: '#0f172a',
+      color: '#ff4f4f',
+      confirmButtonColor: '#00bcd4'
+    })
+  }
 }
 
-const restar = () => {
-  if (!checkAB()) return
-  showResult(formatNumber(parseFloat(a.value) - parseFloat(b.value)))
-}
-
-const multiplicar = () => {
-  if (!checkAB()) return
-  showResult(formatNumber(parseFloat(a.value) * parseFloat(b.value)))
-}
-
-const dividir = () => {
-  if (!checkAB()) return
-  if (parseFloat(b.value) === 0) return showAlert('No se puede dividir por cero.')
-  showResult(formatNumber(parseFloat(a.value) / parseFloat(b.value)))
-}
-
-// Llamadas API
-const potencia = () => {
-  if (!checkAB()) return
-  axios.post(`${api}/potencia`, { base: a.value, exponente: b.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular potencia'))
-}
-
-const raiz = () => {
-  if (a.value === null || a.value < 0) return showAlert('Ingresa un número positivo para raíz.')
-  axios.post(`${api}/raiz`, { numero: a.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular raíz'))
-}
-
-const logaritmo = () => {
-  if (a.value === null || a.value < 1) return showAlert('Ingresa un número mayor o igual a 1 para log.')
-  axios.post(`${api}/logaritmo`, { numero: a.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular logaritmo'))
-}
-
-const seno = () => {
-  if (a.value === null) return showAlert('Ingresa un ángulo en grados.')
-  axios.post(`${api}/seno`, { angulo: a.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular seno'))
-}
-
-const coseno = () => {
-  if (a.value === null) return showAlert('Ingresa un ángulo en grados.')
-  axios.post(`${api}/coseno`, { angulo: a.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular coseno'))
-}
-
-const tangente = () => {
-  if (a.value === null) return showAlert('Ingresa un ángulo en grados.')
-  axios.post(`${api}/tangente`, { angulo: a.value })
-    .then(r => showResult(r.data.operacion))
-    .catch(() => showAlert('Error al calcular tangente'))
-}
+const sumar = () => checkInputs() && mostrarResultado(a.value + b.value)
+const restar = () => checkInputs() && mostrarResultado(a.value - b.value)
+const multiplicar = () => checkInputs() && mostrarResultado(a.value * b.value)
+const dividir = () => checkInputs() && mostrarResultado(b.value !== 0 ? a.value / b.value : '∞')
+const potencia = () => checkInputs() && apiCall('potencia', { base: a.value, exponente: b.value })
+const raiz = () => a.value !== null && apiCall('raiz', { numero: a.value })
+const logaritmo = () => a.value !== null && apiCall('logaritmo', { numero: a.value })
+const seno = () => a.value !== null && apiCall('seno', { angulo: a.value })
+const coseno = () => a.value !== null && apiCall('coseno', { angulo: a.value })
+const tangente = () => a.value !== null && apiCall('tangente', { angulo: a.value })
 
 const logout = async () => {
   localStorage.removeItem('token')
   await Swal.fire({
-    icon: 'info', title: 'Sesión cerrada', text: 'Has cerrado sesión correctamente',
-    confirmButtonColor: '#003366', background: '#f9fafb', color: '#003366'
+    icon: 'info',
+    title: 'Sesión cerrada',
+    text: 'Vuelve pronto',
+    confirmButtonColor: '#00bcd4',
+    background: '#0f172a',
+    color: '#00ffff'
   })
   router.push('/auth')
 }
 </script>
 
+<style scoped>
+.btn-glow {
+  background: linear-gradient(to bottom, #0ff, #0cc);
+  color: #002b36;
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 2px solid #00e0ff;
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.2),
+    0 6px 10px rgba(0, 255, 255, 0.3),
+    0 0 12px rgba(0, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+.btn-glow:hover {
+  background: linear-gradient(to bottom, #00ffff, #00c6ff);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.3),
+    0 10px 15px rgba(0, 255, 255, 0.6),
+    0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.desktop-glow, .mobile-glow {
+  transition: box-shadow 0.4s ease;
+}
+.desktop-glow:hover, .mobile-glow:hover {
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.4);
+}
+</style>
